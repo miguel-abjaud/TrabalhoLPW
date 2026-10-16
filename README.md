@@ -1,0 +1,2 @@
+# TrabalhoLPW
+Gerenciador de Lista
