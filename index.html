@@ -9,21 +9,14 @@
 </head>
 <body>
 
-    <h1>SoundBox</h1>
-    
-    <h3>Adicionar Música</h3>
-    <form id="form-musica">
-        <input type="text" id="titulo" placeholder="Título da música" required><br><br>
-        <input type="text" id="artista" placeholder="Artista" required><br><br>
-        <select id="categoria">
-            <option value="Rock">Rock</option>
-            <option value="Pop">Pop</option>
-            <option value="MPB">MPB</option>
-        </select><br><br>
-        <button type="submit">Salvar</button>
-    </form>
-
-    <hr>
+   <header class="main-header">
+        <h1> SoundBox</h1>
+        <div class="user-controls">
+            <span id="perfil-atual-nome">Usuário: </span>
+            <button id="btn-trocar-perfil" class="btn-secondary">Trocar Perfil</button>
+            <button id="btn-sobre" class="btn-secondary">Sobre</button>
+        </div>
+    </header>
 
     <h3>Minhas Músicas</h3>
     <button onclick="limparTudo()">Limpar Tudo</button><br><br>
