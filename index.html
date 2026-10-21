@@ -9,7 +9,8 @@
 </head>
 <body>
 
-   <header class="main-header">
+
+    <header class="main-header">
         <h1> SoundBox</h1>
         <div class="user-controls">
             <span id="perfil-atual-nome">Usuário: </span>
@@ -18,9 +19,9 @@
         </div>
     </header>
 
-     <div class="container">
+    <div class="container">
         
-      
+
         <div class="card">
             <h3>Adicionar Música</h3>
             <form id="form-musica">
@@ -36,7 +37,7 @@
                         <option value="Pop">Pop</option>
                         <option value="MPB">MPB</option>
                     </select>
-                     </div>
+                </div>
                 <div class="form-group">
                     <select id="status">
                         <option value="Favorito">Favorito</option>
@@ -47,10 +48,58 @@
                 <button type="submit" class="btn-primary">Salvar Música</button>
             </form>
         </div>
-    
-    <h3>Minhas Músicas</h3>
-    <button onclick="limparTudo()">Limpar Tudo</button><br><br>
-    <div id="lista"></div>
+
+   
+        <div class="card">
+            <h3>Sorteador de Músicas</h3>
+            <button id="btn-sortear" class="btn-accent"> O que ouvir agora?</button>
+            <div id="resultado-sorteio" class="sorteio-box"></div>
+        </div>
+
+
+        <div class="card">
+            <div class="header-lista">
+                <h3>Minhas Músicas</h3>
+                <button onclick="limparTudo()" class="btn-danger">Limpar Tudo</button>
+            </div>
+            <div id="lista"></div>
+        </div>
+
+    </div>
+
+
+    <div id="modal-sobre" class="modal escondido">
+        <div class="modal-conteudo">
+            <button class="modal-fechar" id="fechar-modal-sobre">&times;</button>
+            <h2>Sobre o SoundBox</h2>
+            <p>Aplicação web para gerenciamento de bibliotecas musicais.</p>
+            <h3>Autores do Projeto:</h3>
+            <ul>
+                <li>[julia oliveira]</li>
+                <li>[lyon]</li>
+                <li>[miguel]</li>
+                <li>[lucas]</li>
+            </ul>
+            <h3>professor:</h3>
+            <ul>
+                <li>willian sallum</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div id="modal-perfil" class="modal escondido">
+        <div class="modal-conteudo">
+            <h2>Gerenciar Perfis</h2>
+            <div id="lista-perfis"></div>
+            <hr>
+            <h3>Novo Perfil</h3>
+            <form id="form-perfil">
+                <input type="text" id="nome-novo-perfil" placeholder="Nome do perfil" required>
+                <button type="submit" class="btn-primary">Criar Perfil</button>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
