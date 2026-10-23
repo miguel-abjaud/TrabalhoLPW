@@ -10,12 +10,13 @@ function carregarLista(musicas){
     listaEl.innerHTML = '';
 
     for(let i = 0; i < musicas.length; i++){
-        let liEl = createElement('li')
-        listaEl.appendChild(liEl);
-        liEl.innerHTML = musicas[i].titulo + '<br>'; //LEMBRETE: DEIXAR TIULO COM UM TAMANHO MAIOR
-        liEl.innerHTML += 'Artista: ' + musicas[i].artista + '<br>';
-        liEl.innerHTML += 'Categoria: ' + musicas[i].categoria + '<br>';
-        liEl.innerHTML += 'Status: ' + musicas[i].status;
+        let liEl = document.createElement('li');
+        listaEl.insertBefore(liEl, listaEl.firstElementChild);
+
+        liEl.innerHTML = '<strong>' + musicas[i].titulo + '</strong>' + '<br>' +  //LEMBRETE: Criar classe pra deixar o título maior
+        'Artista: ' + musicas[i].artista + '<br>' +
+        'Categoria: ' + musicas[i].categoria + '<br>' +
+        'Status: ' + musicas[i].status;
     }
 }
 
