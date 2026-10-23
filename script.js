@@ -1,15 +1,11 @@
 let musicas = [{
-    /*titulo: undefined,
-      artista: undefined,
-      categoria: undefined,
-      status: undefined */
 }]
 
 function carregarLista(musicas){
     let listaEl = document.querySelector('#lista');
     listaEl.innerHTML = '';
 
-    for(let i = 0; i < musicas.length; i++){
+    for(let i = 1; i < musicas.length; i++){
         let liEl = document.createElement('li');
         listaEl.insertBefore(liEl, listaEl.firstElementChild);
 
@@ -20,7 +16,9 @@ function carregarLista(musicas){
     }
 }
 
-function inserirMusicaNaLista(){
+function inserirMusicaNaLista(e){
+    e.preventDefault();
+
     let tituloEl = document.querySelector('#titulo');
     let artistaEl = document.querySelector('#artista');
     let categoriaEl = document.querySelector('#categoria');
@@ -43,5 +41,6 @@ function inserirMusicaNaLista(){
     carregarLista(musicas);
 }
 
-let botaoSalvar = document.querySelector('#submit');
+let botaoSalvar = document.querySelector('#salvar');
 botaoSalvar.addEventListener('click', inserirMusicaNaLista);
+
