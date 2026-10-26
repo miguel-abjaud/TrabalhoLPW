@@ -1,32 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 body {
-    background-color: rgb(0, 0, 0);
-    color: #fff;
+    background-color: #050811;
+    color: #ffffff;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 }
-h1 {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-    text-align: center;
-    background-color: rgb(36, 0, 168);
-    color: white;
-    padding: 12px 10px;
-    border-radius: 12px;
-    display: inline-box;
-    margin: 5px;
-}
+
 
 .main-header {
+    background: linear-gradient(135deg, #090e1a 0%, #001233 60%, #001845 100%);
+    border-bottom: 2px solid #00f0ff; 
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.25); 
+    padding: 1rem 2rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-.main-header img {
-    width: 90px;
-    height: 60px;
-    object-fit: contain;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-.user-controls{
-    text-align: center;
-    background-color:#00b3a4 ;
+h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #00f0ff;
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 0.5px;
 }
-
