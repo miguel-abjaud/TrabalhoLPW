@@ -45,6 +45,7 @@ function apagarMusicas(){
     if(confirm("Aviso: Essa ação é irrerversível")){
         let listaEl = document.querySelector('#lista');
         listaEl.innerHTML = '';
+        musicas.length = 0;
     }
 }
 
