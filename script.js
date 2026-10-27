@@ -42,8 +42,10 @@ function inserirMusicaNaLista(e){
 }
 
 function apagarMusicas(){
-    let listaEl = document.querySelector('#lista');
-    listaEl.innerHTML = '';
+    if(confirm("Aviso: Essa ação é irrerversível")){
+        let listaEl = document.querySelector('#lista');
+        listaEl.innerHTML = '';
+    }
 }
 
 
