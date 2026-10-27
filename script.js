@@ -41,6 +41,13 @@ function inserirMusicaNaLista(e){
     carregarLista(musicas);
 }
 
+function apagarMusicas(){
+    let listaEl = document.querySelector('#lista');
+    listaEl.innerHTML = '';
+}
+
+
 let botaoSalvar = document.querySelector('#salvar');
 botaoSalvar.addEventListener('click', inserirMusicaNaLista);
-
+let botaoApagar = document.querySelector('#limpar-tudo');
+botaoApagar.addEventListener('click', apagarMusicas);
