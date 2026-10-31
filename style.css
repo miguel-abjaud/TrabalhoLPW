@@ -256,3 +256,17 @@ select:focus {
     color: #050811;
     box-shadow: 0 0 12px rgba(255, 77, 109, 0.7);
 }
+
+
+.main-footer {
+    margin-top: 2rem;
+    padding: 1.25rem 1rem;
+    border-top: 1px solid rgba(0, 240, 255, 0.2);
+    text-align: center;
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+.main-footer p {
+    margin: 0;
+}
