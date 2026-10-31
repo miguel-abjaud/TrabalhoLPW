@@ -315,3 +315,26 @@ select:focus {
     border-top: 1px solid rgba(0, 240, 255, 0.2);
     margin: 1rem 0;
 }
+
+
+.modal-fechar {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    color: #00f0ff;
+    border: 1px solid #00f0ff;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-fechar:hover {
+    background-color: #00f0ff;
+    color: #050811;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
+}
