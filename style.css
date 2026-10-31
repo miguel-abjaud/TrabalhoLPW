@@ -225,3 +225,34 @@ select:focus {
     color: #ffffff;
     font-size: 1.15rem;
 }
+
+
+.header-lista {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.header-lista h3 {
+    margin: 0;
+}
+
+#limpar-tudo {
+    background-color: transparent;
+    color: #ff4d6d;
+    border: 1px solid #ff4d6d;
+    padding: 6px 14px;
+    border-radius: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#limpar-tudo:hover {
+    background-color: #ff4d6d;
+    color: #050811;
+    box-shadow: 0 0 12px rgba(255, 77, 109, 0.7);
+}
