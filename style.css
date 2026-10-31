@@ -270,3 +270,48 @@ select:focus {
 .main-footer p {
     margin: 0;
 }
+
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(5, 8, 17, 0.85);
+    backdrop-filter: blur(4px);
+}
+
+.modal.escondido {
+    display: none;
+}
+
+.modal-conteudo {
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 1.5rem 2rem;
+    background-color: #0b1226;
+    border: 1px solid #00f0ff;
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+}
+
+.modal-conteudo h2 {
+    margin-top: 0;
+    color: #00f0ff;
+}
+
+.modal-conteudo h3 {
+    color: #b44cff;
+}
+
+.modal-conteudo hr {
+    border: none;
+    border-top: 1px solid rgba(0, 240, 255, 0.2);
+    margin: 1rem 0;
+}
