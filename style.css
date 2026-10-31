@@ -67,3 +67,7 @@ h1 {
     color: #050811;
     box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
 }
+
+.escondido {
+    display: none;
+}
