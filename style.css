@@ -338,3 +338,15 @@ select:focus {
     color: #050811;
     box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
 }
+
+
+.user-controls a#btn-sobre {
+    color: #b44cff;
+    border-color: #b44cff;
+}
+
+.user-controls a#btn-sobre:hover {
+    background-color: #b44cff;
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(180, 76, 255, 0.8);
+}
