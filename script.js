@@ -1,5 +1,4 @@
-let musicas = [{
-}]
+let musicas = []
 
 function carregarLista(musicas){
     let listaEl = document.querySelector('#lista');
