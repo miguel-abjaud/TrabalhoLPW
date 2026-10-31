@@ -136,3 +136,23 @@ select:focus {
     border-color: #00f0ff;
     box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
 }
+
+
+.btn-primary {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: linear-gradient(135deg, #00f0ff 0%, #00a8ff 100%);
+    color: #050811;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.7);
+}
