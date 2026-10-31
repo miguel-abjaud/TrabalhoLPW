@@ -350,3 +350,31 @@ select:focus {
     color: #ffffff;
     box-shadow: 0 0 12px rgba(180, 76, 255, 0.8);
 }
+
+
+@media (max-width: 600px) {
+    .main-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .user-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 20px;
+    }
+
+    .container {
+        margin: 1rem auto;
+        padding: 0 0.75rem;
+    }
+
+    .card {
+        padding: 1rem;
+    }
+
+    .modal-conteudo {
+        padding: 1.25rem 1rem;
+    }
+}
