@@ -86,3 +86,12 @@ h1 {
     flex-direction: column;
     gap: 1.5rem;
 }
+
+
+.card {
+    background-color: #0b1226;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+}
