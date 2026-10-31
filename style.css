@@ -176,3 +176,20 @@ select:focus {
     transform: translateY(-2px);
     box-shadow: 0 0 18px rgba(180, 76, 255, 0.7);
 }
+
+
+.sorteio-box {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #050811;
+    border: 2px dashed #b44cff;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.sorteio-box:empty {
+    display: none;
+}
