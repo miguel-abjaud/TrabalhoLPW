@@ -156,3 +156,23 @@ select:focus {
     transform: translateY(-2px);
     box-shadow: 0 0 16px rgba(0, 240, 255, 0.7);
 }
+
+
+.btn-accent {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: linear-gradient(135deg, #b44cff 0%, #7a2cff 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px rgba(180, 76, 255, 0.7);
+}
