@@ -4,7 +4,7 @@ function carregarLista(musicas){
     let listaEl = document.querySelector('#lista');
     listaEl.innerHTML = '';
 
-    for(let i = 1; i < musicas.length; i++){
+    for(let i = 0; i < musicas.length; i++){
         let liEl = document.createElement('li');
         listaEl.insertBefore(liEl, listaEl.firstElementChild);
 
