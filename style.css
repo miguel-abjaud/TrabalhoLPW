@@ -106,3 +106,33 @@ h1 {
     font-weight: 700;
     letter-spacing: 0.5px;
 }
+
+
+.form-group {
+    margin-bottom: 0.9rem;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.7rem 0.9rem;
+    background-color: #050811;
+    color: #ffffff;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]::placeholder {
+    color: #64748b;
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: #00f0ff;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
