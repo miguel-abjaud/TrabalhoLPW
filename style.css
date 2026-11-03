@@ -378,3 +378,24 @@ select:focus {
         padding: 1.25rem 1rem;
     }
 }
+
+.btn-voltar {
+
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    padding: 6px 14px;
+    color: #00f0ff;
+    border: 1px solid #00f0ff;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+ 
+.btn-voltar:hover {
+    
+    background-color: #00f0ff;
+    color: #050811;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
+}
