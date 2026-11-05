@@ -399,3 +399,38 @@ select:focus {
     color: #050811;
     box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
 }
+
+.lista-creditos {
+    list-style: none;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+ 
+.lista-creditos:last-child {
+    margin-bottom: 0;
+}
+ 
+.lista-creditos li {
+    padding: 0.9rem 1rem;
+    background-color: #050811;
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    border-left: 4px solid #00f0ff;
+    border-radius: 10px;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+ 
+.lista-creditos li:hover {
+    border-left-color: #b44cff;
+    transform: translateX(4px);
+}
+ 
+.lista-creditos li strong {
+    color: #ffffff;
+    font-size: 1.15rem;
+}
