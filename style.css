@@ -434,3 +434,15 @@ select:focus {
     color: #ffffff;
     font-size: 1.15rem;
 }
+
+.card h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+ 
+.card p {
+    margin: 0 0 1.5rem 0;
+    color: #cbd5e1;
+    line-height: 1.7;
+}
+
