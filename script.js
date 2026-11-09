@@ -1,17 +1,17 @@
-let musicas = []
+let musicas = JSON.parse(localStorage.getItem('soundbox_musicas')) || [];
 
-function carregarLista(musicas){
+function carregarLista(musicasArray){
     let listaEl = document.querySelector('#lista');
     listaEl.innerHTML = '';
 
-    for(let i = 0; i < musicas.length; i++){
+    for(let i = 0; i < musicasArray.length; i++){
         let liEl = document.createElement('li');
-        listaEl.insertBefore(liEl, listaEl.firstElementChild);
+        listaEl.appendChild(liEl);
 
-        liEl.innerHTML = '<strong>' + musicas[i].titulo + '</strong>' + '<br>' +  //LEMBRETE: Criar classe pra deixar o título maior
-        'Artista: ' + musicas[i].artista + '<br>' +
-        'Categoria: ' + musicas[i].categoria + '<br>' +
-        'Status: ' + musicas[i].status;
+        liEl.innerHTML = '<strong>' + musicasArray[i].titulo + '</strong><br>' +
+        'Artista: ' + musicasArray[i].artista + '<br>' +
+        'Categoria: ' + musicasArray[i].categoria + '<br>' +
+        'Status: ' + musicasArray[i].status;
     }
 }
 
@@ -31,25 +31,12 @@ function inserirMusicaNaLista(e){
     };
 
     musicas.push(novaMusica);
+    
+    localStorage.setItem('soundbox_musicas', JSON.stringify(musicas));
 
     tituloEl.value = '';
     artistaEl.value = '';
-    
     tituloEl.focus();
 
     carregarLista(musicas);
 }
-
-function apagarMusicas(){
-    if(confirm("Aviso: Essa ação é irreversível")){
-        let listaEl = document.querySelector('#lista');
-        listaEl.innerHTML = '';
-        musicas.length = 0;
-    }
-}
-
-
-let botaoSalvar = document.querySelector('#salvar');
-botaoSalvar.addEventListener('click', inserirMusicaNaLista);
-let botaoApagar = document.querySelector('#limpar-tudo');
-botaoApagar.addEventListener('click', apagarMusicas);
