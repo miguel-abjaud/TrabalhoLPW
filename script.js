@@ -40,3 +40,46 @@ function inserirMusicaNaLista(e){
 
     carregarLista(musicas);
 }
+
+function apagarMusicas(){
+    if(confirm("Aviso: Essa ação é irreversível")){
+        musicas = [];
+        localStorage.removeItem('soundbox_musicas');
+        carregarLista(musicas);
+        
+        let resultadoDiv = document.getElementById('resultado-sorteio');
+        if(resultadoDiv) resultadoDiv.innerHTML = '';
+    }
+}
+
+function sortearMusica() {
+    let resultadoDiv = document.getElementById('resultado-sorteio');
+
+    if (musicas.length === 0) {
+        resultadoDiv.innerHTML = "⚠️ Cadastre pelo menos uma música antes de sortear!";
+        return;
+    }
+
+    let indiceAleatorio = Math.floor(Math.random() * musicas.length);
+    let musicaSorteada = musicas[indiceAleatorio];
+
+    resultadoDiv.innerHTML = `🎉 Sugestão para ouvir agora:<br><strong>${musicaSorteada.titulo}</strong> - ${musicaSorteada.artista} <em>(${musicaSorteada.categoria})</em>`;
+}
+
+
+let formulario = document.querySelector('#form-musica');
+if (formulario) {
+    formulario.addEventListener('submit', inserirMusicaNaLista);
+}
+
+let botaoApagar = document.querySelector('#limpar-tudo');
+if (botaoApagar) {
+    botaoApagar.addEventListener('click', apagarMusicas);
+}
+
+let botaoSortear = document.querySelector('#btn-sortear');
+if (botaoSortear) {
+    botaoSortear.addEventListener('click', sortearMusica);
+}
+
+carregarLista(musicas);
