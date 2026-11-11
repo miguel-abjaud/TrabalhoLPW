@@ -504,3 +504,14 @@ select:focus {
     }
 }
 
+
+@media (max-width: 360px) {
+    .modal-conteudo {
+        width: 94%;
+        padding: 1rem;
+    }
+ 
+    .modal-conteudo h2 {
+        font-size: 1.2rem;
+    }
+}
