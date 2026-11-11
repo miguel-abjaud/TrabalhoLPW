@@ -66,6 +66,13 @@ function sortearMusica() {
     resultadoDiv.innerHTML = `🎉 Sugestão para ouvir agora:<br><strong>${musicaSorteada.titulo}</strong> - ${musicaSorteada.artista} <em>(${musicaSorteada.categoria})</em>`;
 }
 
+function gerenciarPerfis(event) {
+    event?.stopPropagation();
+    let modal = document.querySelector('#modal-perfil');
+    modal.classList.remove('escondido');
+
+    modal.addEventListener('click', clicouForaModal(event));
+}
 
 let formulario = document.querySelector('#form-musica');
 if (formulario) {
@@ -83,3 +90,8 @@ if (botaoSortear) {
 }
 
 carregarLista(musicas);
+
+let botaoPerfil = document.querySelector('#btn-trocar-perfil');
+if(botaoPerfil){
+    botaoPerfil.addEventListener('click', gerenciarPerfis);
+}
