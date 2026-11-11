@@ -79,6 +79,18 @@ function fecharGerenciarPerfis() {
     modal.classList.add('escondido');
 }
 
+function clicouForaModal(event){
+    let modal = document.querySelector('#modal-perfil');
+
+    if (!document.contains(event.target)) {
+        return;
+    }
+
+    if(modal && !modal.contains(event.target)){
+        fecharGerenciarPerfis();
+    }
+}
+
 let formulario = document.querySelector('#form-musica');
 if (formulario) {
     formulario.addEventListener('submit', inserirMusicaNaLista);
