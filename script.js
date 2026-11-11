@@ -40,6 +40,16 @@ function inserirMusicaNaLista(e){
 
     criarBotoesFiltro();
     filtrarMusicas(categoriaAtual);
+
+    buscarCapa(novaMusica.titulo, novaMusica.artista)
+        .then(function(capa){
+            novaMusica.capa = capa;
+            localStorage.setItem('soundbox_musicas', JSON.stringify(musicas));
+            filtrarMusicas(categoriaAtual);
+        })
+        .catch(function(erro){
+            console.error(erro);
+        });
 }
 
 function apagarMusicas(){
@@ -93,6 +103,26 @@ function clicouForaModal(event){
         fecharGerenciarPerfis();
     }
 }
+
+function buscarCapa(titulo, artista){
+    let termo = encodeURIComponent(titulo + ' ' + artista);
+    let url = 'https://itunes.apple.com/search?media=music&entity=song&limit=1&term=' + termo;
+
+    return fetch(url)
+        .then(function(resposta){
+            if(!resposta.ok){
+                throw new Error('Erro na busca da capa: ' + resposta.status);
+            }
+            return resposta.json();
+        })
+        .then(function(dados){
+            if(dados.resultCount === 0){
+                return null;
+            }
+            return dados.results[0].artworkUrl100;
+        });
+}
+
 
 let categoriaAtual = 'Todas';
 
