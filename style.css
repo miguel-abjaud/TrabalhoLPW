@@ -378,3 +378,140 @@ select:focus {
         padding: 1.25rem 1rem;
     }
 }
+
+.btn-voltar {
+
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    padding: 6px 14px;
+    color: #00f0ff;
+    border: 1px solid #00f0ff;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+ 
+.btn-voltar:hover {
+    
+    background-color: #00f0ff;
+    color: #050811;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
+}
+
+.lista-creditos {
+    list-style: none;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+ 
+.lista-creditos:last-child {
+    margin-bottom: 0;
+}
+ 
+.lista-creditos li {
+    padding: 0.9rem 1rem;
+    background-color: #050811;
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    border-left: 4px solid #00f0ff;
+    border-radius: 10px;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+ 
+.lista-creditos li:hover {
+    border-left-color: #b44cff;
+    transform: translateX(4px);
+}
+ 
+.lista-creditos li strong {
+    color: #ffffff;
+    font-size: 1.15rem;
+}
+
+.card h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+ 
+.card p {
+    margin: 0 0 1.5rem 0;
+    color: #cbd5e1;
+    line-height: 1.7;
+}
+
+@media (max-width: 480px) {
+    .main-header {
+        padding: 0.75rem;
+    }
+ 
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+
+@media (max-width: 360px) {
+    .user-controls {
+        width: 100%;
+        box-sizing: border-box;
+        gap: 8px;
+        padding: 6px 10px;
+    }
+ 
+    .user-controls .btn-secondary {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+ 
+    #perfil-atual-nome {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .card h3 {
+        font-size: 1.05rem;
+    }
+ 
+    .btn-primary,
+    .btn-accent {
+        font-size: 0.95rem;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .header-lista {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+ 
+    #lista li {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+        overflow-wrap: anywhere;
+    }
+ 
+    #lista li strong {
+        font-size: 1.05rem;
+    }
+}
+
+
+@media (max-width: 360px) {
+    .modal-conteudo {
+        width: 94%;
+        padding: 1rem;
+    }
+ 
+    .modal-conteudo h2 {
+        font-size: 1.2rem;
+    }
+}
