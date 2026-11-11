@@ -91,6 +91,24 @@ function clicouForaModal(event){
     }
 }
 
+let categoriaAtual = 'Todas';
+
+function filtrarMusicas(categoria){
+    categoriaAtual = categoria;
+
+    if(categoria === 'Todas'){
+        carregarLista(musicas);
+        return;
+    }
+
+    let musicasFiltradas = musicas.filter(function(musica){
+        return musica.categoria === categoria;
+    });
+
+    carregarLista(musicasFiltradas);
+}
+
+
 let formulario = document.querySelector('#form-musica');
 if (formulario) {
     formulario.addEventListener('submit', inserirMusicaNaLista);
