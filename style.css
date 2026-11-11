@@ -287,6 +287,11 @@ select:focus {
     display: none;
 }
 
+#btn-modal {
+   position: relative; left: 90%; bottom: 45px;
+    display: block;
+}
+
 .modal-conteudo {
     position: relative;
     width: 90%;
