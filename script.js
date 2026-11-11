@@ -74,6 +74,11 @@ function gerenciarPerfis(event) {
     modal.addEventListener('click', clicouForaModal(event));
 }
 
+function fecharGerenciarPerfis() {
+    let modal = document.querySelector('#modal-perfil');
+    modal.classList.add('escondido');
+}
+
 let formulario = document.querySelector('#form-musica');
 if (formulario) {
     formulario.addEventListener('submit', inserirMusicaNaLista);
@@ -94,4 +99,9 @@ carregarLista(musicas);
 let botaoPerfil = document.querySelector('#btn-trocar-perfil');
 if(botaoPerfil){
     botaoPerfil.addEventListener('click', gerenciarPerfis);
+}
+
+let botaoFechar = document.querySelector('#btn-modal');
+if(botaoFechar){
+    botaoFechar.addEventListener('click', fecharGerenciarPerfis);
 }
