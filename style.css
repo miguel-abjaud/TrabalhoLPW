@@ -475,4 +475,16 @@ select:focus {
     }
 }
 
+@media (max-width: 400px) {
+    .card h3 {
+        font-size: 1.05rem;
+    }
+ 
+    .btn-primary,
+    .btn-accent {
+        font-size: 0.95rem;
+    }
+}
+
+
 
