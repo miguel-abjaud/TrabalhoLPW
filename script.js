@@ -38,14 +38,17 @@ function inserirMusicaNaLista(e){
     artistaEl.value = '';
     tituloEl.focus();
 
-    carregarLista(musicas);
+    criarBotoesFiltro();
+    filtrarMusicas(categoriaAtual);
 }
 
 function apagarMusicas(){
     if(confirm("Aviso: Essa ação é irreversível")){
         musicas = [];
         localStorage.removeItem('soundbox_musicas');
-        carregarLista(musicas);
+        categoriaAtual = 'Todas';
+        criarBotoesFiltro();
+        filtrarMusicas(categoriaAtual);
         
         let resultadoDiv = document.getElementById('resultado-sorteio');
         if(resultadoDiv) resultadoDiv.innerHTML = '';
@@ -96,6 +99,11 @@ let categoriaAtual = 'Todas';
 function filtrarMusicas(categoria){
     categoriaAtual = categoria;
 
+    let botoes = document.querySelectorAll('.btn-filtro');
+    for(let i = 0; i < botoes.length; i++){
+        botoes[i].classList.toggle('ativo', botoes[i].dataset.categoria === categoria);
+    }
+
     if(categoria === 'Todas'){
         carregarLista(musicas);
         return;
@@ -106,6 +114,37 @@ function filtrarMusicas(categoria){
     });
 
     carregarLista(musicasFiltradas);
+}
+
+
+function criarBotoesFiltro(){
+    let filtrosEl = document.querySelector('#filtros');
+    filtrosEl.innerHTML = '';
+
+    let categorias = ['Todas'];
+    for(let i = 0; i < musicas.length; i++){
+        if(!categorias.includes(musicas[i].categoria)){
+            categorias.push(musicas[i].categoria);
+        }
+    }
+
+    for(let i = 0; i < categorias.length; i++){
+        let botaoEl = document.createElement('button');
+        botaoEl.type = 'button';
+        botaoEl.className = 'btn-filtro';
+        botaoEl.textContent = categorias[i];
+        botaoEl.dataset.categoria = categorias[i];
+
+        if(categorias[i] === categoriaAtual){
+            botaoEl.classList.add('ativo');
+        }
+
+        botaoEl.addEventListener('click', function(){
+            filtrarMusicas(categorias[i]);
+        });
+
+        filtrosEl.appendChild(botaoEl);
+    }
 }
 
 
@@ -124,7 +163,8 @@ if (botaoSortear) {
     botaoSortear.addEventListener('click', sortearMusica);
 }
 
-carregarLista(musicas);
+criarBotoesFiltro();
+filtrarMusicas(categoriaAtual);
 
 let botaoPerfil = document.querySelector('#btn-trocar-perfil');
 if(botaoPerfil){
