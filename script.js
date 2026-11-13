@@ -84,6 +84,7 @@ function gerenciarPerfis() {
     modal.classList.remove('escondido');
 
     modal.addEventListener('click', clicouForaModal);
+    document.addEventListener('keydown', fecharModalESC)
 }
 
 function fecharGerenciarPerfis() {
@@ -95,6 +96,12 @@ function clicouForaModal(event) {
    let modal = document.querySelector('#modal-perfil');
 
     if (event.target === modal) {
+        fecharGerenciarPerfis();
+    }
+}
+
+function fecharModalESC(event){
+    if(event.key === 'Escape'){
         fecharGerenciarPerfis();
     }
 }
