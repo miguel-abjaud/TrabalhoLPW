@@ -52,6 +52,17 @@ function inserirMusicaNaLista(e){
         });
 }
 
+function salvarMusicas(){
+    localStorage.setItem('musicas Salvas', JSON.stringify(musicas));
+
+    let mensagem = document.querySelector('#mensagem');
+    mensagem.classList.remove('escondido');
+
+    setTimeout(() => {
+        mensagem.classList.add('escondido');
+    }, 3000);
+}
+
 function apagarMusicas(){
     if(confirm("Aviso: Essa ação é irreversível")){
         musicas = [];
@@ -183,6 +194,11 @@ function criarBotoesFiltro(){
 let formulario = document.querySelector('#form-musica');
 if (formulario) {
     formulario.addEventListener('submit', inserirMusicaNaLista);
+}
+
+let botaoSalvar = document.querySelector('#salvar-musicas')
+if(botaoSalvar){
+    botaoSalvar.addEventListener('click', salvarMusicas);
 }
 
 let botaoApagar = document.querySelector('#limpar-tudo');

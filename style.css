@@ -238,6 +238,33 @@ select:focus {
     margin: 0;
 }
 
+#mensagem {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+
+#salvar-musicas {
+    background-color: transparent;
+    color: aqua;
+    border: 1px solid violet;
+    padding: 6px 14px;
+    border-radius: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
 #limpar-tudo {
     background-color: transparent;
     color: #ff4d6d;
