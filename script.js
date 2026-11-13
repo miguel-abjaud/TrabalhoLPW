@@ -79,12 +79,11 @@ function sortearMusica() {
     resultadoDiv.innerHTML = `🎉 Sugestão para ouvir agora:<br><strong>${musicaSorteada.titulo}</strong> - ${musicaSorteada.artista} <em>(${musicaSorteada.categoria})</em>`;
 }
 
-function gerenciarPerfis(event) {
-    event?.stopPropagation();
+function gerenciarPerfis() {
     let modal = document.querySelector('#modal-perfil');
     modal.classList.remove('escondido');
 
-    modal.addEventListener('click', clicouForaModal(event));
+    modal.addEventListener('click', clicouForaModal);
 }
 
 function fecharGerenciarPerfis() {
@@ -92,14 +91,10 @@ function fecharGerenciarPerfis() {
     modal.classList.add('escondido');
 }
 
-function clicouForaModal(event){
-    let modal = document.querySelector('#modal-perfil');
+function clicouForaModal(event) {
+   let modal = document.querySelector('#modal-perfil');
 
-    if (!document.contains(event.target)) {
-        return;
-    }
-
-    if(modal && !modal.contains(event.target)){
+    if (event.target === modal) {
         fecharGerenciarPerfis();
     }
 }
