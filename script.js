@@ -9,7 +9,8 @@ function carregarLista(musicasArray){
         let liEl = document.createElement('li');
         listaEl.appendChild(liEl);
 
-        liEl.innerHTML = '<strong>' + musicasArray[i].titulo + '</strong><br>' +
+        liEl.innerHTML = '<strong>' + musicasArray[i].titulo + '</strong>' +
+        '<button class = "btn-apagar-musica">X</button><br>' +
         'Artista: ' + musicasArray[i].artista + '<br>' +
         'Categoria: ' + musicasArray[i].categoria + '<br>' +
         'Status: ' + musicasArray[i].status;
