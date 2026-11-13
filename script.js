@@ -10,10 +10,17 @@ function carregarLista(musicasArray){
         listaEl.appendChild(liEl);
 
         liEl.innerHTML = '<strong>' + musicasArray[i].titulo + '</strong>' +
-        '<button class = "btn-apagar-musica">X</button><br>' +
+        '<button type = "button" class = "btn-apagar-musica">X</button><br>' +
         'Artista: ' + musicasArray[i].artista + '<br>' +
         'Categoria: ' + musicasArray[i].categoria + '<br>' +
         'Status: ' + musicasArray[i].status;
+
+        let botaoExcluir = liEl.querySelector('.btn-apagar-musica');
+        if(botaoExcluir){
+            botaoExcluir.addEventListener('click', function(){
+                excluirMusica(musicasArray[i])
+            });
+        }
     }
 }
 
@@ -137,6 +144,26 @@ function apagarMusicas(){
         
         let resultadoDiv = document.getElementById('resultado-sorteio');
         if(resultadoDiv) resultadoDiv.innerHTML = '';
+    }
+}
+
+function excluirMusica(musicaExcluida){
+    let indice = musicas.indexOf(musicaExcluida);
+
+    if(indice !== -1){
+        musicas.splice(indice, 1);
+        localStorage.setItem('soundbox_musicas', JSON.stringify(musicas));
+
+        carregarLista(musicas);
+        criarBotoesFiltro();
+        filtrarMusicas(categoriaAtual);
+
+        mensagem.innerHTML = 'Item Excluído com Sucesso!';
+        mensagem.classList.remove('escondido');
+
+        setTimeout(() => {
+            mensagem.classList.add('escondido');
+        }, 2500);
     }
 }
 
