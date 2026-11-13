@@ -69,6 +69,8 @@ function criarNovaCategoria(e){
     let listaCategorias = document.querySelector('#categoria');
     listaCategorias.innerHTML += '<option value="' + novaCategoria + '">' + novaCategoria + '</option>';
 
+    document.querySelector('#nome-categoria').value = '';
+
     if (!categoriasSalvas.includes(novaCategoria)) {
         categoriasSalvas.push(novaCategoria);
         localStorage.setItem('soundbox_categorias', JSON.stringify(categoriasSalvas));
@@ -252,14 +254,14 @@ function criarBotoesFiltro(){
 }
 
 
-let formulario = document.querySelector('#form-musica');
-if (formulario) {
-    formulario.addEventListener('submit', inserirMusicaNaLista);
+let formularioMusica = document.querySelector('#form-musica');
+if (formularioMusica) {
+    formularioMusica.addEventListener('submit', inserirMusicaNaLista);
 }
 
-let botaoNovaCategoria = document.querySelector('#salvar-categoria');
-if(botaoNovaCategoria){
-    botaoNovaCategoria.addEventListener('click', criarNovaCategoria);
+let formularioCategoria = document.querySelector('#form-categoria');
+if(formularioCategoria){
+    formularioCategoria.addEventListener('submit', criarNovaCategoria);
 }
 
 let botaoSalvar = document.querySelector('#salvar-musicas')
