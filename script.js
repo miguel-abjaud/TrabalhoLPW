@@ -1,4 +1,5 @@
 let musicas = JSON.parse(localStorage.getItem('soundbox_musicas')) || [];
+let categoriasSalvas = JSON.parse(localStorage.getItem('soundbox_categorias')) || [];
 
 function carregarLista(musicasArray){
     let listaEl = document.querySelector('#lista');
@@ -12,6 +13,15 @@ function carregarLista(musicasArray){
         'Artista: ' + musicasArray[i].artista + '<br>' +
         'Categoria: ' + musicasArray[i].categoria + '<br>' +
         'Status: ' + musicasArray[i].status;
+    }
+}
+
+function carregarCategoriasSalvas() {
+    let listaCategorias = document.querySelector('#categoria');
+
+    for (let i = 0; i < categoriasSalvas.length; i++) {
+        listaCategorias.innerHTML += '<option value="' + categoriasSalvas[i]
+         + '">' + categoriasSalvas[i] + '</option>';
     }
 }
 
@@ -50,6 +60,27 @@ function inserirMusicaNaLista(e){
         .catch(function(erro){
             console.error(erro);
         });
+}
+
+function criarNovaCategoria(e){
+    e.preventDefault();
+
+    let novaCategoria = document.querySelector('#nome-categoria').value;
+    let listaCategorias = document.querySelector('#categoria');
+    listaCategorias.innerHTML += '<option value="' + novaCategoria + '">' + novaCategoria + '</option>';
+
+    if (!categoriasSalvas.includes(novaCategoria)) {
+        categoriasSalvas.push(novaCategoria);
+        localStorage.setItem('soundbox_categorias', JSON.stringify(categoriasSalvas));
+    }
+
+    let mensagem = document.querySelector('#mensagem');
+    mensagem.innerHTML = 'Categoria Adicionada com Sucesso!';
+    mensagem.classList.remove('escondido');
+
+    setTimeout(() => {
+        mensagem.classList.add('escondido');
+    }, 2500);
 }
 
 function salvarMusicas(){
@@ -226,6 +257,11 @@ if (formulario) {
     formulario.addEventListener('submit', inserirMusicaNaLista);
 }
 
+let botaoNovaCategoria = document.querySelector('#salvar-categoria');
+if(botaoNovaCategoria){
+    botaoNovaCategoria.addEventListener('click', criarNovaCategoria);
+}
+
 let botaoSalvar = document.querySelector('#salvar-musicas')
 if(botaoSalvar){
     botaoSalvar.addEventListener('click', salvarMusicas);
@@ -248,6 +284,7 @@ if (botaoSortear) {
 
 criarBotoesFiltro();
 filtrarMusicas(categoriaAtual);
+carregarCategoriasSalvas();
 
 let botaoPerfil = document.querySelector('#btn-trocar-perfil');
 if(botaoPerfil){
