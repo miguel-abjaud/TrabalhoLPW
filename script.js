@@ -53,7 +53,7 @@ function inserirMusicaNaLista(e){
 }
 
 function salvarMusicas(){
-    localStorage.setItem('musicas Salvas', JSON.stringify(musicas));
+    localStorage.setItem('soundbox_musicas_salvas', JSON.stringify(musicas));
 
     let mensagem = document.querySelector('#mensagem');
     mensagem.innerHTML = 'Músicas Salvas com Sucesso!';
@@ -65,12 +65,26 @@ function salvarMusicas(){
 }
 
 function carregarMusicas(){
-    let musicasSalvas = JSON.parse(localStorage.getItem('musicas Salvas'));
-
-    musicas = musicasSalvas
-    carregarLista(musicas);
+    let musicasSalvas = JSON.parse(localStorage.getItem('soundbox_musicas_salvas'));
 
     let mensagem = document.querySelector('#mensagem');
+
+    if (!musicasSalvas) {
+        mensagem.innerHTML = 'Nenhuma lista salva encontrada!';
+        mensagem.classList.remove('escondido');
+
+        setTimeout(() =>{
+             mensagem.classList.add('escondido')
+        }, 2500);
+        return;
+    }
+
+    musicas = musicasSalvas;
+
+    localStorage.setItem('soundbox_musicas', JSON.stringify(musicas));
+
+    carregarLista(musicas);
+
     mensagem.innerHTML = 'Lista Carregada com Sucesso!';
     mensagem.classList.remove('escondido');
 
