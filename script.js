@@ -56,11 +56,27 @@ function salvarMusicas(){
     localStorage.setItem('musicas Salvas', JSON.stringify(musicas));
 
     let mensagem = document.querySelector('#mensagem');
+    mensagem.innerHTML = 'Músicas Salvas com Sucesso!';
     mensagem.classList.remove('escondido');
 
     setTimeout(() => {
         mensagem.classList.add('escondido');
-    }, 3000);
+    }, 2500);
+}
+
+function carregarMusicas(){
+    let musicasSalvas = JSON.parse(localStorage.getItem('musicas Salvas'));
+
+    musicas = musicasSalvas
+    carregarLista(musicas);
+
+    let mensagem = document.querySelector('#mensagem');
+    mensagem.innerHTML = 'Lista Carregada com Sucesso!';
+    mensagem.classList.remove('escondido');
+
+    setTimeout(() => {
+        mensagem.classList.add('escondido');
+    }, 2500);
 }
 
 function apagarMusicas(){
@@ -199,6 +215,11 @@ if (formulario) {
 let botaoSalvar = document.querySelector('#salvar-musicas')
 if(botaoSalvar){
     botaoSalvar.addEventListener('click', salvarMusicas);
+}
+
+let botaoCarregar = document.querySelector('#carregar-musicas');
+if(botaoCarregar){
+    botaoCarregar.addEventListener('click', carregarMusicas);
 }
 
 let botaoApagar = document.querySelector('#limpar-tudo');

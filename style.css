@@ -265,6 +265,27 @@ select:focus {
     transition: all 0.3s ease;
 }
 
+#carregar-musicas {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f1f5f9;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    padding: 11px 22px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 12px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: all 0.25s ease;
+}
+
+#carregar-musicas:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #38bdf8;
+    color: #38bdf8;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+}
+
 #limpar-tudo {
     background-color: transparent;
     color: #ff4d6d;
