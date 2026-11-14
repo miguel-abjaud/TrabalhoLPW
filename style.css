@@ -652,5 +652,24 @@ select:focus {
 }
 
 
+#form-musica {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1rem;
+}
+ 
+#form-musica .form-group:nth-child(1),
+#form-musica .form-group:nth-child(2),
+#form-musica .btn-primary {
+    grid-column: 1 / -1;
+}
+ 
+@media (max-width: 480px) {
+    #form-musica {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 
 
