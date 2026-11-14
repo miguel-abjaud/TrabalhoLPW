@@ -621,3 +621,10 @@ select:focus {
 .card {
     animation: entrar 0.5s ease backwards;
 }
+
+.btn-primary:active,
+.btn-accent:active,
+#limpar-tudo:active {
+    transform: scale(0.97);
+}
+
