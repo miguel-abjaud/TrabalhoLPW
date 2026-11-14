@@ -647,4 +647,10 @@ select:focus {
     animation: aparecer 0.4s ease;
 }
 
+.modal-conteudo {
+    animation: entrar 0.3s ease backwards;
+}
+
+
+
 
