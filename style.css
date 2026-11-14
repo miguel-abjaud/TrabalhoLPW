@@ -628,3 +628,8 @@ select:focus {
     transform: scale(0.97);
 }
 
+#lista li {
+    animation: entrar 0.4s ease backwards;
+}
+
+
