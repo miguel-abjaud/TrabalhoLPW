@@ -593,3 +593,94 @@ select:focus {
         font-size: 1.2rem;
     }
 }
+
+
+@media (max-width: 480px) {
+    .btn-voltar {
+        display: block;
+        text-align: center;
+    }
+ 
+    .card h1 {
+        font-size: 1.6rem;
+    }
+ 
+    .lista-creditos li {
+        padding: 0.75rem;
+    }
+}
+
+
+@keyframes entrar {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+ 
+.card {
+    animation: entrar 0.5s ease backwards;
+}
+
+.btn-primary:active,
+.btn-accent:active,
+#limpar-tudo:active {
+    transform: scale(0.97);
+}
+
+#lista li {
+    animation: entrar 0.4s ease backwards;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+ 
+.sorteio-box {
+    animation: aparecer 0.4s ease;
+}
+
+.modal-conteudo {
+    animation: entrar 0.3s ease backwards;
+}
+
+
+#form-musica {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1rem;
+}
+ 
+#form-musica .form-group:nth-child(1),
+#form-musica .form-group:nth-child(2),
+#form-musica .btn-primary {
+    grid-column: 1 / -1;
+}
+ 
+@media (max-width: 480px) {
+    #form-musica {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.lista-creditos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
+}
+
+
+
+
