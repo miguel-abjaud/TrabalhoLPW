@@ -68,6 +68,14 @@ function inserirMusicaNaLista(e){
         .catch(function(erro){
             console.error(erro);
         });
+
+        let mensagem = document.querySelector('#mensagem');
+        mensagem.innerHTML = 'Música Adicionada com Sucesso!';
+        mensagem.classList.remove('escondido');
+
+        setTimeout(() => {
+            mensagem.classList.add('escondido');
+        }, 2500);
 }
 
 function criarNovaCategoria(e){
