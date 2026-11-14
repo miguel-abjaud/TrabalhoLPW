@@ -589,3 +589,19 @@ select:focus {
         font-size: 1.2rem;
     }
 }
+
+
+@media (max-width: 480px) {
+    .btn-voltar {
+        display: block;
+        text-align: center;
+    }
+ 
+    .card h1 {
+        font-size: 1.6rem;
+    }
+ 
+    .lista-creditos li {
+        padding: 0.75rem;
+    }
+}
