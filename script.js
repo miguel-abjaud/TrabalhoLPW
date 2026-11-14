@@ -48,6 +48,8 @@ function inserirMusicaNaLista(e){
             mensagem.classList.remove('doMal');
         }, 2500);
 
+        tituloEl.value = '';
+        tituloEl.focus();
         return;
     }
 
@@ -63,6 +65,8 @@ function inserirMusicaNaLista(e){
             mensagem.classList.remove('doMal');
         }, 2500);
 
+        artistaEl.value = '';
+        artistaEl.focus();
         return;
     }
 
