@@ -39,7 +39,7 @@ function inserirMusicaNaLista(e){
     let tituloEl = document.querySelector('#titulo');
     if(tituloEl.value.trim().length === 0){
         let mensagem = document.querySelector('#mensagem');
-        mensagem.textContent = 'Título/Artista Vazio!';
+        mensagem.textContent = 'Título Vazio!';
         mensagem.classList.add('doMal');
         mensagem.classList.remove('escondido');
 
@@ -50,7 +50,22 @@ function inserirMusicaNaLista(e){
 
         return;
     }
+
     let artistaEl = document.querySelector('#artista');
+    if(artistaEl.value.trim().length === 0){
+        let mensagem = document.querySelector('#mensagem');
+        mensagem.textContent = 'Artista Vazio!';
+        mensagem.classList.add('doMal');
+        mensagem.classList.remove('escondido');
+
+        setTimeout(() => {
+            mensagem.classList.add('escondido');
+            mensagem.classList.remove('doMal');
+        }, 2500);
+
+        return;
+    }
+
     let categoriaEl = document.querySelector('#categoria');
     let statusEl = document.querySelector('#status');
 
