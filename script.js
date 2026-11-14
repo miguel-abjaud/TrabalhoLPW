@@ -70,7 +70,7 @@ function inserirMusicaNaLista(e){
         });
 
         let mensagem = document.querySelector('#mensagem');
-        mensagem.innerHTML = 'Música Adicionada com Sucesso!';
+        mensagem.textContent = 'Música Adicionada com Sucesso!';
         mensagem.classList.remove('escondido');
 
         setTimeout(() => {
@@ -93,7 +93,7 @@ function criarNovaCategoria(e){
     }
 
     let mensagem = document.querySelector('#mensagem');
-    mensagem.innerHTML = 'Categoria Adicionada com Sucesso!';
+    mensagem.textContent = 'Categoria Adicionada com Sucesso!';
     mensagem.classList.remove('escondido');
 
     setTimeout(() => {
@@ -105,7 +105,7 @@ function salvarMusicas(){
     localStorage.setItem('soundbox_musicas_salvas', JSON.stringify(musicas));
 
     let mensagem = document.querySelector('#mensagem');
-    mensagem.innerHTML = 'Músicas Salvas com Sucesso!';
+    mensagem.textContent = 'Músicas Salvas com Sucesso!';
     mensagem.classList.remove('escondido');
 
     setTimeout(() => {
@@ -119,7 +119,7 @@ function carregarMusicas(){
     let mensagem = document.querySelector('#mensagem');
 
     if (!musicasSalvas) {
-        mensagem.innerHTML = 'Nenhuma lista salva encontrada!';
+        mensagem.textContent = 'Nenhuma lista salva encontrada!';
         mensagem.classList.remove('escondido');
 
         setTimeout(() =>{
@@ -134,7 +134,7 @@ function carregarMusicas(){
 
     carregarLista(musicas);
 
-    mensagem.innerHTML = 'Lista Carregada com Sucesso!';
+    mensagem.textContent = 'Lista Carregada com Sucesso!';
     mensagem.classList.remove('escondido');
 
     setTimeout(() => {
@@ -151,7 +151,7 @@ function apagarMusicas(){
         filtrarMusicas(categoriaAtual);
         
         let resultadoDiv = document.getElementById('resultado-sorteio');
-        if(resultadoDiv) resultadoDiv.innerHTML = '';
+        if(resultadoDiv) resultadoDiv.textContent = '';
     }
 }
 
@@ -166,7 +166,7 @@ function excluirMusica(musicaExcluida){
         criarBotoesFiltro();
         filtrarMusicas(categoriaAtual);
 
-        mensagem.innerHTML = 'Item Excluído com Sucesso!';
+        mensagem.textContent = 'Item Excluído com Sucesso!';
         mensagem.classList.remove('escondido');
 
         setTimeout(() => {
@@ -179,7 +179,7 @@ function sortearMusica() {
     let resultadoDiv = document.getElementById('resultado-sorteio');
 
     if (musicas.length === 0) {
-        resultadoDiv.innerHTML = "⚠️ Cadastre pelo menos uma música antes de sortear!";
+        resultadoDiv.textContent = "⚠️ Cadastre pelo menos uma música antes de sortear!";
         return;
     }
 
