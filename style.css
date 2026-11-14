@@ -253,6 +253,10 @@ select:focus {
     transition: opacity 0.3s ease;
 }
 
+.doMal {
+    background-color: red !important;
+}
+
 #salvar-musicas {
     background-color: transparent;
     color: aqua;
