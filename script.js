@@ -1,5 +1,4 @@
 let musicas = JSON.parse(localStorage.getItem('soundbox_musicas')) || [];
-let categoriasSalvas = JSON.parse(localStorage.getItem('soundbox_categorias')) || [];
 
 function carregarLista(musicasArray){
     let listaEl = document.querySelector('#lista');
@@ -10,7 +9,7 @@ function carregarLista(musicasArray){
         listaEl.appendChild(liEl);
 
         liEl.innerHTML = '<strong>' + musicasArray[i].titulo + '</strong>' +
-        '<button type = "button" class = "btn-apagar-musica">X</button><br>' +
+        '<button type="button" class="btn-apagar-musica">X</button><br>' +
         'Artista: ' + musicasArray[i].artista + '<br>' +
         'Categoria: ' + musicasArray[i].categoria + '<br>' +
         'Status: ' + musicasArray[i].status;
@@ -18,18 +17,9 @@ function carregarLista(musicasArray){
         let botaoExcluir = liEl.querySelector('.btn-apagar-musica');
         if(botaoExcluir){
             botaoExcluir.addEventListener('click', function(){
-                excluirMusica(musicasArray[i])
+                excluirMusica(musicasArray[i]);
             });
         }
-    }
-}
-
-function carregarCategoriasSalvas() {
-    let listaCategorias = document.querySelector('#categoria');
-
-    for (let i = 0; i < categoriasSalvas.length; i++) {
-        listaCategorias.innerHTML += '<option value="' + categoriasSalvas[i]
-         + '">' + categoriasSalvas[i] + '</option>';
     }
 }
 
@@ -38,34 +28,14 @@ function inserirMusicaNaLista(e){
 
     let tituloEl = document.querySelector('#titulo');
     if(tituloEl.value.trim().length === 0){
-        let mensagem = document.querySelector('#mensagem');
-        mensagem.textContent = 'Título Vazio!';
-        mensagem.classList.add('doMal');
-        mensagem.classList.remove('escondido');
-
-        setTimeout(() => {
-            mensagem.classList.add('escondido');
-            mensagem.classList.remove('doMal');
-        }, 2500);
-
-        tituloEl.value = '';
+        mostrarMensagem('Título Vazio!', true);
         tituloEl.focus();
         return;
     }
 
     let artistaEl = document.querySelector('#artista');
     if(artistaEl.value.trim().length === 0){
-        let mensagem = document.querySelector('#mensagem');
-        mensagem.textContent = 'Artista Vazio!';
-        mensagem.classList.add('doMal');
-        mensagem.classList.remove('escondido');
-
-        setTimeout(() => {
-            mensagem.classList.add('escondido');
-            mensagem.classList.remove('doMal');
-        }, 2500);
-
-        artistaEl.value = '';
+        mostrarMensagem('Artista Vazio!', true);
         artistaEl.focus();
         return;
     }
@@ -81,7 +51,6 @@ function inserirMusicaNaLista(e){
     };
 
     musicas.push(novaMusica);
-    
     localStorage.setItem('soundbox_musicas', JSON.stringify(musicas));
 
     tituloEl.value = '';
@@ -91,86 +60,24 @@ function inserirMusicaNaLista(e){
     criarBotoesFiltro();
     filtrarMusicas(categoriaAtual);
 
-    buscarCapa(novaMusica.titulo, novaMusica.artista)
-        .then(function(capa){
-            novaMusica.capa = capa;
-            localStorage.setItem('soundbox_musicas', JSON.stringify(musicas));
-            filtrarMusicas(categoriaAtual);
-        })
-        .catch(function(erro){
-            console.error(erro);
-        });
-
-        let mensagem = document.querySelector('#mensagem');
-        mensagem.textContent = 'Música Adicionada com Sucesso!';
-        mensagem.classList.remove('escondido');
-
-        setTimeout(() => {
-            mensagem.classList.add('escondido');
-        }, 2500);
+    mostrarMensagem('Música Adicionada com Sucesso!', false);
 }
 
-function criarNovaCategoria(e){
-    e.preventDefault();
-
-    let novaCategoria = document.querySelector('#nome-categoria').value;
-    let listaCategorias = document.querySelector('#categoria');
-    listaCategorias.innerHTML += '<option value="' + novaCategoria + '">' + novaCategoria + '</option>';
-
-    document.querySelector('#nome-categoria').value = '';
-
-    if (!categoriasSalvas.includes(novaCategoria)) {
-        categoriasSalvas.push(novaCategoria);
-        localStorage.setItem('soundbox_categorias', JSON.stringify(categoriasSalvas));
+function mostrarMensagem(texto, ehErro) {
+    let mensagem = document.querySelector('#mensagem');
+    mensagem.textContent = texto;
+    
+    if (ehErro) {
+        mensagem.classList.add('doMal');
+    } else {
+        mensagem.classList.remove('doMal');
     }
 
-    let mensagem = document.querySelector('#mensagem');
-    mensagem.textContent = 'Categoria Adicionada com Sucesso!';
     mensagem.classList.remove('escondido');
 
     setTimeout(() => {
         mensagem.classList.add('escondido');
-    }, 2500);
-}
-
-function salvarMusicas(){
-    localStorage.setItem('soundbox_musicas_salvas', JSON.stringify(musicas));
-
-    let mensagem = document.querySelector('#mensagem');
-    mensagem.textContent = 'Músicas Salvas com Sucesso!';
-    mensagem.classList.remove('escondido');
-
-    setTimeout(() => {
-        mensagem.classList.add('escondido');
-    }, 2500);
-}
-
-function carregarMusicas(){
-    let musicasSalvas = JSON.parse(localStorage.getItem('soundbox_musicas_salvas'));
-
-    let mensagem = document.querySelector('#mensagem');
-
-    if (!musicasSalvas) {
-        mensagem.textContent = 'Nenhuma lista salva encontrada!';
-        mensagem.classList.remove('escondido');
-
-        setTimeout(() =>{
-             mensagem.classList.add('escondido')
-        }, 2500);
-        return;
-    }
-
-    musicas = musicasSalvas;
-
-    localStorage.setItem('soundbox_musicas', JSON.stringify(musicas));
-
-    carregarLista(musicas);
-
-    mensagem.textContent = 'Lista Carregada com Sucesso!';
-    mensagem.classList.remove('escondido');
-
-    setTimeout(() => {
-        mensagem.classList.add('escondido');
+        mensagem.classList.remove('doMal');
     }, 2500);
 }
 
@@ -198,12 +105,7 @@ function excluirMusica(musicaExcluida){
         criarBotoesFiltro();
         filtrarMusicas(categoriaAtual);
 
-        mensagem.textContent = 'Item Excluído com Sucesso!';
-        mensagem.classList.remove('escondido');
-
-        setTimeout(() => {
-            mensagem.classList.add('escondido');
-        }, 2500);
+        mostrarMensagem('Item Excluído com Sucesso!', false);
     }
 }
 
@@ -226,7 +128,7 @@ function gerenciarPerfis() {
     modal.classList.remove('escondido');
 
     modal.addEventListener('click', clicouForaModal);
-    document.addEventListener('keydown', fecharModalESC)
+    document.addEventListener('keydown', fecharModalESC);
 }
 
 function fecharGerenciarPerfis() {
@@ -235,8 +137,7 @@ function fecharGerenciarPerfis() {
 }
 
 function clicouForaModal(event) {
-   let modal = document.querySelector('#modal-perfil');
-
+    let modal = document.querySelector('#modal-perfil');
     if (event.target === modal) {
         fecharGerenciarPerfis();
     }
@@ -247,26 +148,6 @@ function fecharModalESC(event){
         fecharGerenciarPerfis();
     }
 }
-
-function buscarCapa(titulo, artista){
-    let termo = encodeURIComponent(titulo + ' ' + artista);
-    let url = 'https://itunes.apple.com/search?media=music&entity=song&limit=1&term=' + termo;
-
-    return fetch(url)
-        .then(function(resposta){
-            if(!resposta.ok){
-                throw new Error('Erro na busca da capa: ' + resposta.status);
-            }
-            return resposta.json();
-        })
-        .then(function(dados){
-            if(dados.resultCount === 0){
-                return null;
-            }
-            return dados.results[0].artworkUrl100;
-        });
-}
-
 
 let categoriaAtual = 'Todas';
 
@@ -289,7 +170,6 @@ function filtrarMusicas(categoria){
 
     carregarLista(musicasFiltradas);
 }
-
 
 function criarBotoesFiltro(){
     let filtrosEl = document.querySelector('#filtros');
@@ -322,24 +202,10 @@ function criarBotoesFiltro(){
 }
 
 
+
 let formularioMusica = document.querySelector('#form-musica');
 if (formularioMusica) {
     formularioMusica.addEventListener('submit', inserirMusicaNaLista);
-}
-
-let formularioCategoria = document.querySelector('#form-categoria');
-if(formularioCategoria){
-    formularioCategoria.addEventListener('submit', criarNovaCategoria);
-}
-
-let botaoSalvar = document.querySelector('#salvar-musicas')
-if(botaoSalvar){
-    botaoSalvar.addEventListener('click', salvarMusicas);
-}
-
-let botaoCarregar = document.querySelector('#carregar-musicas');
-if(botaoCarregar){
-    botaoCarregar.addEventListener('click', carregarMusicas);
 }
 
 let botaoApagar = document.querySelector('#limpar-tudo');
@@ -354,7 +220,6 @@ if (botaoSortear) {
 
 criarBotoesFiltro();
 filtrarMusicas(categoriaAtual);
-carregarCategoriasSalvas();
 
 let botaoPerfil = document.querySelector('#btn-trocar-perfil');
 if(botaoPerfil){
