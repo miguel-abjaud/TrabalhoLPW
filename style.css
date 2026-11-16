@@ -674,8 +674,6 @@ select:focus {
     }
 }
 
-
-
 .lista-creditos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
