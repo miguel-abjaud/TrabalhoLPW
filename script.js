@@ -1,4 +1,5 @@
 let musicas = JSON.parse(localStorage.getItem('soundbox_musicas')) || [];
+
 let categoriasCores = JSON.parse(localStorage.getItem('soundbox_categorias_cores')) || {
     'Rock': '#ff4d6d',
     'Pop': '#b44cff',
@@ -13,7 +14,6 @@ let categoriasCores = JSON.parse(localStorage.getItem('soundbox_categorias_cores
     'Forró': '#eab308',
     'Sertanejo': '#a855f7'
 };
-
 let corSelecionada = '#ff4d6d';
 const opcoesCor = document.querySelectorAll('.opcao-cor');
 const inputCorOculto = document.querySelector('#cor-categoria');
@@ -35,12 +35,16 @@ function carregarLista(musicasArray){
 
     for(let i = 0; i < musicasArray.length; i++){
         let liEl = document.createElement('li');
+        
+        let corCat = categoriasCores[musicasArray[i].categoria] || '#00f0ff';
+        liEl.style.borderLeftColor = corCat;
+
         listaEl.appendChild(liEl);
 
         liEl.innerHTML = '<strong>' + musicasArray[i].titulo + '</strong>' +
         '<button type="button" class="btn-apagar-musica">X</button><br>' +
         'Artista: ' + musicasArray[i].artista + '<br>' +
-        'Categoria: ' + musicasArray[i].categoria + '<br>' +
+        'Categoria: <span style="color:' + corCat + '; font-weight:bold;">' + musicasArray[i].categoria + '</span><br>' +
         'Status: ' + musicasArray[i].status;
 
         let botaoExcluir = liEl.querySelector('.btn-apagar-musica');
@@ -70,7 +74,13 @@ function inserirMusicaNaLista(e){
     }
 
     let categoriaEl = document.querySelector('#categoria');
+    let corCategoriaEl = document.querySelector('#cor-categoria');
     let statusEl = document.querySelector('#status');
+
+    if(categoriaEl.value && corCategoriaEl) {
+        categoriasCores[categoriaEl.value] = corCategoriaEl.value;
+        localStorage.setItem('soundbox_categorias_cores', JSON.stringify(categoriasCores));
+    }
 
     let novaMusica = {
         titulo: tituloEl.value,
@@ -218,6 +228,11 @@ function criarBotoesFiltro(){
         botaoEl.textContent = categorias[i];
         botaoEl.dataset.categoria = categorias[i];
 
+        if(categorias[i] !== 'Todas') {
+            let cor = categoriasCores[categorias[i]] || '#00f0ff';
+            botaoEl.style.setProperty('--cor-categoria', cor);
+        }
+
         if(categorias[i] === categoriaAtual){
             botaoEl.classList.add('ativo');
         }
@@ -229,8 +244,6 @@ function criarBotoesFiltro(){
         filtrosEl.appendChild(botaoEl);
     }
 }
-
-
 
 let formularioMusica = document.querySelector('#form-musica');
 if (formularioMusica) {
