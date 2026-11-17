@@ -53,6 +53,25 @@
                         <option value="Ouvir Depois">Mais Tocadas</option>
                     </select>
                 </div>
+                <div class="form-group">
+                <div class="input-cor-grupo">
+                     <label for="cor-categoria">Cor da Categoria:</label>
+                     <div class="form-group">
+                         <label style="color: #cbd5e1; font-size: 0.9rem; display: block; margin-bottom: 6px;">Cor da Categoria:</label>
+                         <div id="paleta-cores" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <div class="opcao-cor selecionada" data-cor="#ff4d6d" style="background-color: #ff4d6d; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid white;"></div>
+                            <div class="opcao-cor" data-cor="#b44cff" style="background-color: #b44cff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent;"></div>
+                            <div class="opcao-cor" data-cor="#00f0ff" style="background-color: #00f0ff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent;"></div>
+                            <div class="opcao-cor" data-cor="#38bdf8" style="background-color: #38bdf8; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent;"></div>
+                            <div class="opcao-cor" data-cor="#22c55e" style="background-color: #22c55e; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent;"></div>
+                            <div class="opcao-cor" data-cor="#eab308" style="background-color: #eab308; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent;"></div>
+                            <div class="opcao-cor" data-cor="#f97316" style="background-color: #f97316; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent;"></div>
+                     </div>
+   
+                    <input type="hidden" id="cor-categoria" value="#ff4d6d">
+                </div>
+                 </div>
+            </div>
                 <button type="submit" id="salvar" class="btn-primary">Salvar Música</button>
             </form>
         </div>
