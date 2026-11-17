@@ -705,4 +705,32 @@ input[type="color"] {
     background: none;
 }
 
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
 
+input[type="color"]::-webkit-color-swatch {
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.btn-filtro {
+    background-color: #050811;
+    color: #cbd5e1;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    padding: 6px 14px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.btn-filtro:hover, .btn-filtro.ativo {
+    background-color: var(--cor-categoria, #00f0ff);
+    color: #050811;
+    box-shadow: 0 0 12px var(--cor-categoria, rgba(0, 240, 255, 0.8));
+    border-color: var(--cor-categoria, #00f0ff);
+}
