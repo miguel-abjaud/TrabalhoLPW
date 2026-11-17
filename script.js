@@ -1,5 +1,18 @@
 let musicas = JSON.parse(localStorage.getItem('soundbox_musicas')) || [];
-
+let categoriasCores = JSON.parse(localStorage.getItem('soundbox_categorias_cores')) || {
+    'Rock': '#ff4d6d',
+    'Pop': '#b44cff',
+    'MPB': '#00f0ff',
+    'Hip Hop': '#38bdf8',
+    'Rap': '#facc15',
+    'Blues': '#6366f1',
+    'Jazz': '#ec4899',
+    'Samba': '#22c55e',
+    'Pagode': '#10b981',
+    'Xote': '#f97316',
+    'Forró': '#eab308',
+    'Sertanejo': '#a855f7'
+};
 function carregarLista(musicasArray){
     let listaEl = document.querySelector('#lista');
     listaEl.innerHTML = '';
