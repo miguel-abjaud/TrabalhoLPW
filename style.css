@@ -680,6 +680,29 @@ select:focus {
     gap: 0.75rem;
 }
 
+.input-cor-grupo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #050811;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: 10px;
+    padding: 0.5rem 0.9rem;
+}
 
+.input-cor-grupo label {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: none;
+}
 
 
