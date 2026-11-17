@@ -13,6 +13,22 @@ let categoriasCores = JSON.parse(localStorage.getItem('soundbox_categorias_cores
     'Forró': '#eab308',
     'Sertanejo': '#a855f7'
 };
+
+let corSelecionada = '#ff4d6d';
+const opcoesCor = document.querySelectorAll('.opcao-cor');
+const inputCorOculto = document.querySelector('#cor-categoria');
+
+opcoesCor.forEach(bolinha => {
+    bolinha.addEventListener('click', () => {
+        opcoesCor.forEach(b => b.style.borderColor = 'transparent');
+        bolinha.style.borderColor = 'white';
+        
+        corSelecionada = bolinha.dataset.cor;
+        if(inputCorOculto) {
+            inputCorOculto.value = corSelecionada;
+        }
+    });
+});
 function carregarLista(musicasArray){
     let listaEl = document.querySelector('#lista');
     listaEl.innerHTML = '';
