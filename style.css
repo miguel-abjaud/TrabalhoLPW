@@ -361,8 +361,36 @@ select:focus {
 }
 
 #btn-modal {
-   position: relative; left: 90%; bottom: 45px;
-    display: block;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+}
+
+#lista-perfis {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.perfil-opcao {
+    padding: 0.7rem 1rem;
+    background: transparent;
+    color: #00f0ff;
+    border: 1px solid rgba(0, 240, 255, 0.5);
+    border-radius: 10px;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.perfil-opcao:hover:not(:disabled) {
+    background-color: rgba(0, 240, 255, 0.12);
+}
+
+.perfil-opcao:disabled {
+    color: #94a3b8;
+    border-color: rgba(148, 163, 184, 0.3);
+    cursor: default;
 }
 
 .modal-conteudo {

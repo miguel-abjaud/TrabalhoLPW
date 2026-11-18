@@ -1,4 +1,98 @@
-let musicas = JSON.parse(localStorage.getItem('soundbox_musicas')) || [];
+let perfis = JSON.parse(localStorage.getItem('soundbox_perfis')) || [];
+let perfilAtualId = localStorage.getItem('soundbox_perfil_atual');
+
+if (perfis.length === 0) {
+    perfis = [{
+        id: String(Date.now()),
+        nome: 'Meu perfil',
+        musicas: JSON.parse(localStorage.getItem('soundbox_musicas')) || []
+    }];
+    perfilAtualId = perfis[0].id;
+}
+
+let perfilAtual = perfis.find(function(perfil){
+    return perfil.id === perfilAtualId;
+}) || perfis[0];
+perfilAtualId = perfilAtual.id;
+let musicas = perfilAtual.musicas || [];
+
+function salvarPerfis(){
+    perfilAtual.musicas = musicas;
+    localStorage.setItem('soundbox_perfis', JSON.stringify(perfis));
+    localStorage.setItem('soundbox_perfil_atual', perfilAtualId);
+    localStorage.setItem('soundbox_musicas', JSON.stringify(musicas));
+}
+
+function atualizarPerfilAtual(){
+    let nomeEl = document.querySelector('#perfil-atual-nome');
+    nomeEl.textContent = 'Usuário: ' + perfilAtual.nome;
+}
+
+function renderizarPerfis(){
+    let listaEl = document.querySelector('#lista-perfis');
+    listaEl.innerHTML = '';
+
+    perfis.forEach(function(perfil){
+        let botaoEl = document.createElement('button');
+        botaoEl.type = 'button';
+        botaoEl.className = 'btn-secondary perfil-opcao';
+        botaoEl.textContent = perfil.nome + (perfil.id === perfilAtualId ? ' (atual)' : '');
+        botaoEl.disabled = perfil.id === perfilAtualId;
+        botaoEl.addEventListener('click', function(){
+            selecionarPerfil(perfil.id);
+        });
+        listaEl.appendChild(botaoEl);
+    });
+}
+
+function selecionarPerfil(id){
+    perfilAtual.musicas = musicas;
+    perfilAtual = perfis.find(function(perfil){
+        return perfil.id === id;
+    });
+    perfilAtualId = perfilAtual.id;
+    musicas = perfilAtual.musicas || [];
+    perfilAtual.musicas = musicas;
+    salvarPerfis();
+    atualizarPerfilAtual();
+    renderizarPerfis();
+    categoriaAtual = 'Todas';
+    criarBotoesFiltro();
+    filtrarMusicas(categoriaAtual);
+    document.querySelector('#resultado-sorteio').innerHTML = '';
+    fecharGerenciarPerfis();
+}
+
+function criarPerfil(event){
+    event.preventDefault();
+    let nomeEl = document.querySelector('#nome-novo-perfil');
+    let nome = nomeEl.value.trim();
+
+    if (!nome) {
+        return;
+    }
+
+    let existente = perfis.find(function(perfil){
+        return perfil.nome.toLocaleLowerCase() === nome.toLocaleLowerCase();
+    });
+
+    if (existente) {
+        selecionarPerfil(existente.id);
+        nomeEl.value = '';
+        return;
+    }
+
+    let novoPerfil = {
+        id: String(Date.now()) + Math.random().toString(36).slice(2),
+        nome: nome,
+        musicas: []
+    };
+    perfis.push(novoPerfil);
+    nomeEl.value = '';
+    salvarPerfis();
+    renderizarPerfis();
+    selecionarPerfil(novoPerfil.id);
+}
 
 let categoriasCores = JSON.parse(localStorage.getItem('soundbox_categorias_cores')) || {
     'Rock': '#ff4d6d',
@@ -90,7 +184,7 @@ function inserirMusicaNaLista(e){
     };
 
     musicas.push(novaMusica);
-    localStorage.setItem('soundbox_musicas', JSON.stringify(musicas));
+    salvarPerfis();
 
     tituloEl.value = '';
     artistaEl.value = '';
@@ -100,6 +194,17 @@ function inserirMusicaNaLista(e){
     filtrarMusicas(categoriaAtual);
 
     mostrarMensagem('Música Adicionada com Sucesso!', false);
+    buscarCapa(novaMusica.titulo, novaMusica.artista)
+        .then(function(capa){
+            novaMusica.capa = capa;
+            if (musicas.includes(novaMusica)) {
+                salvarPerfis();
+                filtrarMusicas(categoriaAtual);
+            }
+        })
+        .catch(function(erro){
+            console.error(erro);
+        });
 }
 
 function mostrarMensagem(texto, ehErro) {
@@ -123,7 +228,7 @@ function mostrarMensagem(texto, ehErro) {
 function apagarMusicas(){
     if(confirm("Aviso: Essa ação é irreversível")){
         musicas = [];
-        localStorage.removeItem('soundbox_musicas');
+        salvarPerfis();
         categoriaAtual = 'Todas';
         criarBotoesFiltro();
         filtrarMusicas(categoriaAtual);
@@ -138,7 +243,7 @@ function excluirMusica(musicaExcluida){
 
     if(indice !== -1){
         musicas.splice(indice, 1);
-        localStorage.setItem('soundbox_musicas', JSON.stringify(musicas));
+        salvarPerfis();
 
         carregarLista(musicas);
         criarBotoesFiltro();
@@ -165,9 +270,7 @@ function sortearMusica() {
 function gerenciarPerfis() {
     let modal = document.querySelector('#modal-perfil');
     modal.classList.remove('escondido');
-
-    modal.addEventListener('click', clicouForaModal);
-    document.addEventListener('keydown', fecharModalESC);
+    renderizarPerfis();
 }
 
 function fecharGerenciarPerfis() {
@@ -186,6 +289,25 @@ function fecharModalESC(event){
     if(event.key === 'Escape'){
         fecharGerenciarPerfis();
     }
+}
+
+function buscarCapa(titulo, artista){
+    let termo = encodeURIComponent(titulo + ' ' + artista);
+    let url = 'https://itunes.apple.com/search?media=music&entity=song&limit=1&term=' + termo;
+
+    return fetch(url)
+        .then(function(resposta){
+            if(!resposta.ok){
+                throw new Error('Erro na busca da capa: ' + resposta.status);
+            }
+            return resposta.json();
+        })
+        .then(function(dados){
+            if(dados.resultCount === 0){
+                return null;
+            }
+            return dados.results[0].artworkUrl100;
+        });
 }
 
 let categoriaAtual = 'Todas';
@@ -272,3 +394,27 @@ let botaoFechar = document.querySelector('#btn-modal');
 if(botaoFechar){
     botaoFechar.addEventListener('click', fecharGerenciarPerfis);
 }
+
+let formularioPerfil = document.querySelector('#form-perfil');
+if(formularioPerfil){
+    formularioPerfil.addEventListener('submit', criarPerfil);
+}
+
+let modalPerfil = document.querySelector('#modal-perfil');
+if(modalPerfil){
+    modalPerfil.addEventListener('click', function(event){
+        if(event.target === modalPerfil){
+            fecharGerenciarPerfis();
+        }
+    });
+}
+
+document.addEventListener('keydown', function(event){
+    if(event.key === 'Escape'){
+        fecharGerenciarPerfis();
+    }
+});
+
+salvarPerfis();
+atualizarPerfilAtual();
+renderizarPerfis();
