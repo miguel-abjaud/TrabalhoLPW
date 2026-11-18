@@ -15,6 +15,54 @@ function salvarCategorias(){
     localStorage.setItem('soundbox_categorias', JSON.stringify(categorias));
 }
 
+function atualizarOpcoesCategorias(){
+    let selectEl = document.querySelector('#categoria');
+    selectEl.innerHTML = '';
+
+    categorias.forEach(function(categoria){
+        let opcaoEl = document.createElement('option');
+        opcaoEl.value = categoria.nome;
+        opcaoEl.textContent = categoria.nome;
+        selectEl.appendChild(opcaoEl);
+    });
+}
+
+function renderizarCategorias(){
+    let listaEl = document.querySelector('#lista-categorias');
+    listaEl.innerHTML = '';
+
+    categorias.forEach(function(categoria){
+        let itemEl = document.createElement('span');
+        itemEl.className = 'categoria-item';
+        itemEl.textContent = categoria.nome;
+        itemEl.style.setProperty('--cor-categoria', categoria.cor);
+        listaEl.appendChild(itemEl);
+    });
+}
+
+function criarCategoria(event){
+    event.preventDefault();
+    let nomeEl = document.querySelector('#nome-nova-categoria');
+    let corEl = document.querySelector('#cor-nova-categoria');
+    let nome = nomeEl.value.trim();
+
+    if (!nome || categorias.some(function(categoria){
+        return categoria.nome.toLocaleLowerCase() === nome.toLocaleLowerCase();
+    })) {
+        return;
+    }
+
+    categorias.push({ nome: nome, cor: corEl.value });
+    categoriasCores[nome] = corEl.value;
+    localStorage.setItem('soundbox_categorias_cores', JSON.stringify(categoriasCores));
+    salvarCategorias();
+    atualizarOpcoesCategorias();
+    renderizarCategorias();
+    criarBotoesFiltro();
+    nomeEl.value = '';
+    nomeEl.focus();
+}
+
 if (perfis.length === 0) {
     perfis = [{
         id: String(Date.now()),
@@ -122,6 +170,13 @@ let categoriasCores = JSON.parse(localStorage.getItem('soundbox_categorias_cores
     'Forró': '#eab308',
     'Sertanejo': '#a855f7'
 };
+
+Object.keys(categoriasCores).forEach(function(nome){
+    if(!categorias.some(function(categoria){ return categoria.nome === nome; })){
+        categorias.push({ nome: nome, cor: categoriasCores[nome] });
+    }
+});
+
 let corSelecionada = '#ff4d6d';
 const opcoesCor = document.querySelectorAll('.opcao-cor');
 const inputCorOculto = document.querySelector('#cor-categoria');
@@ -414,6 +469,11 @@ if(formularioPerfil){
     formularioPerfil.addEventListener('submit', criarPerfil);
 }
 
+let formularioCategoria = document.querySelector('#form-categoria');
+if(formularioCategoria){
+    formularioCategoria.addEventListener('submit', criarCategoria);
+}
+
 let modalPerfil = document.querySelector('#modal-perfil');
 if(modalPerfil){
     modalPerfil.addEventListener('click', function(event){
@@ -432,3 +492,6 @@ document.addEventListener('keydown', function(event){
 salvarPerfis();
 atualizarPerfilAtual();
 renderizarPerfis();
+salvarCategorias();
+atualizarOpcoesCategorias();
+renderizarCategorias();

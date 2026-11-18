@@ -113,6 +113,7 @@ h1 {
 }
 
 input[type="text"],
+input[type="color"],
 select {
     width: 100%;
     box-sizing: border-box;
@@ -124,6 +125,12 @@ select {
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
     transition: all 0.3s ease;
+}
+
+input[type="color"] {
+    min-height: 42px;
+    padding: 0.25rem;
+    cursor: pointer;
 }
 
 input[type="text"]::placeholder {

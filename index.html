@@ -77,6 +77,21 @@
         </div>
 
         <div class="card">
+            <h3>Categorias</h3>
+            <form id="form-categoria">
+                <div class="form-group">
+                    <input type="text" id="nome-nova-categoria" placeholder="Nome da categoria" required>
+                </div>
+                <div class="form-group">
+                    <label for="cor-nova-categoria">Cor da categoria</label>
+                    <input type="color" id="cor-nova-categoria" value="#00f0ff">
+                </div>
+                <button type="submit" class="btn-primary">Criar Categoria</button>
+            </form>
+            <div id="lista-categorias"></div>
+        </div>
+
+        <div class="card">
             <h3>Sorteador de Músicas</h3>
             <button id="btn-sortear" class="btn-accent"> O que ouvir agora?</button>
             <div id="resultado-sorteio" class="sorteio-box"></div>
