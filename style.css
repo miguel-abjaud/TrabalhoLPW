@@ -420,6 +420,32 @@ select:focus {
     background-color: color-mix(in srgb, var(--cor-categoria) 25%, #050811);
 }
 
+.chuva-confetes {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.confete {
+    position: absolute;
+    top: -20px;
+    left: var(--posicao-x);
+    width: 9px;
+    height: 15px;
+    border-radius: 2px;
+    background-color: var(--cor-confete);
+    animation: confete-cair var(--duracao) linear var(--atraso) forwards;
+}
+
+@keyframes confete-cair {
+    to {
+        transform: translate3d(35px, 110vh, 0) rotate(calc(var(--giro) + 720deg));
+        opacity: 0.2;
+    }
+}
+
 .btn-filtro {
     background-color: transparent;
     cursor: pointer;

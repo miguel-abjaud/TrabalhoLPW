@@ -129,6 +129,8 @@ function criarPerfil(event){
     event.preventDefault();
     let nomeEl = document.querySelector('#nome-novo-perfil');
     let nome = nomeEl.value.trim();
+    let nomeNormalizado = nome.toLocaleLowerCase('pt-BR').replace(/\s+/g, ' ');
+    let perfilDoProfessor = nomeNormalizado === 'william sallum';
 
     if (!nome) {
         return;
@@ -139,8 +141,14 @@ function criarPerfil(event){
     });
 
     if (existente) {
+        if (perfilDoProfessor) {
+            adicionarMusicaDoProfessor(existente);
+        }
         selecionarPerfil(existente.id);
         nomeEl.value = '';
+        if (perfilDoProfessor) {
+            celebrarPerfilDoProfessor();
+        }
         return;
     }
 
@@ -149,11 +157,59 @@ function criarPerfil(event){
         nome: nome,
         musicas: []
     };
+    if (perfilDoProfessor) {
+        adicionarMusicaDoProfessor(novoPerfil);
+    }
     perfis.push(novoPerfil);
     nomeEl.value = '';
     salvarPerfis();
     renderizarPerfis();
     selecionarPerfil(novoPerfil.id);
+    if (perfilDoProfessor) {
+        celebrarPerfilDoProfessor();
+    }
+}
+
+function adicionarMusicaDoProfessor(perfil){
+    perfil.musicas = perfil.musicas || [];
+    let musicaExiste = perfil.musicas.some(function(musica){
+        return musica.titulo.toLocaleLowerCase('pt-BR') === 'eu sou o melhor';
+    });
+
+    if (!musicaExiste) {
+        perfil.musicas.push({
+            titulo: 'Eu Sou o Melhor',
+            artista: 'William Sallum',
+            categoria: categorias[0]?.nome || 'Rock',
+            status: 'Favorito'
+        });
+    }
+}
+
+function celebrarPerfilDoProfessor(){
+    let camadaEl = document.createElement('div');
+    camadaEl.className = 'chuva-confetes';
+    camadaEl.setAttribute('aria-hidden', 'true');
+    let cores = ['#ff4d6d', '#b44cff', '#00f0ff', '#facc15', '#22c55e', '#f97316'];
+
+    for (let i = 0; i < 120; i++) {
+        let confeteEl = document.createElement('span');
+        confeteEl.className = 'confete';
+        confeteEl.style.setProperty('--posicao-x', Math.random() * 100 + 'vw');
+        confeteEl.style.setProperty('--atraso', Math.random() * 0.8 + 's');
+        confeteEl.style.setProperty('--duracao', 2.5 + Math.random() * 2 + 's');
+        confeteEl.style.setProperty('--cor-confete', cores[i % cores.length]);
+        confeteEl.style.setProperty('--giro', Math.random() * 360 + 'deg');
+        camadaEl.appendChild(confeteEl);
+    }
+
+    document.body.appendChild(camadaEl);
+    window.setTimeout(function(){
+        camadaEl.remove();
+    }, 5200);
+    window.setTimeout(function(){
+        window.alert('bem vindo, melhor professor!');
+    }, 2600);
 }
 
 let categoriasCores = JSON.parse(localStorage.getItem('soundbox_categorias_cores')) || {
