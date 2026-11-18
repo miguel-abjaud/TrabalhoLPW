@@ -1,5 +1,19 @@
 let perfis = JSON.parse(localStorage.getItem('soundbox_perfis')) || [];
 let perfilAtualId = localStorage.getItem('soundbox_perfil_atual');
+let categorias = JSON.parse(localStorage.getItem('soundbox_categorias')) || [
+    { nome: 'Rock', cor: '#e74c3c' },
+    { nome: 'Pop', cor: '#9b59b6' },
+    { nome: 'MPB', cor: '#f39c12' },
+    { nome: 'Hip Hop', cor: '#3498db' },
+    { nome: 'Rap', cor: '#2ecc71' },
+    { nome: 'Blues', cor: '#1abc9c' },
+    { nome: 'Jazz', cor: '#e67e22' },
+    { nome: 'Samba', cor: '#f1c40f' }
+];
+
+function salvarCategorias(){
+    localStorage.setItem('soundbox_categorias', JSON.stringify(categorias));
+}
 
 if (perfis.length === 0) {
     perfis = [{
