@@ -494,6 +494,26 @@ select:focus {
     box-shadow: 0 0 12px rgba(180, 76, 255, 0.8);
 }
 
+.user-controls #btn-sobre {
+    color: #b44cff;
+    border-color: #b44cff;
+}
+
+.user-controls #btn-sobre:hover {
+    background-color: #b44cff;
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(180, 76, 255, 0.8);
+}
+
+.capa-musica {
+    float: right;
+    width: 64px;
+    height: 64px;
+    margin-left: 0.75rem;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
 
 @media (max-width: 600px) {
     .main-header {

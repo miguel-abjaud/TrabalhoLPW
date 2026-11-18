@@ -200,7 +200,14 @@ function carregarLista(musicasArray){
         let liEl = document.createElement('li');
         let corCat = categoriasCores[musicasArray[i].categoria] || '#00f0ff';
         liEl.style.borderLeftColor = corCat;
-
+        if(musicasArray[i].capa){
+            let capaEl = document.createElement('img');
+            capaEl.className = 'capa-musica';
+            capaEl.src = musicasArray[i].capa;
+            capaEl.alt = 'Capa de ' + musicasArray[i].titulo;
+            capaEl.loading = 'lazy';
+            liEl.appendChild(capaEl);
+        }
         let tituloEl = document.createElement('strong');
         tituloEl.textContent = musicasArray[i].titulo;
         liEl.appendChild(tituloEl);
@@ -282,6 +289,9 @@ function inserirMusicaNaLista(e){
         })
         .catch(function(erro){
             console.error(erro);
+            if (musicas.includes(novaMusica)) {
+                document.querySelector('#resultado-sorteio').textContent = 'Música salva. Não foi possível carregar a capa agora.';
+            }
         });
 }
 
