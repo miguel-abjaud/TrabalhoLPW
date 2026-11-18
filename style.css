@@ -261,7 +261,7 @@ select:focus {
 }
 
 .doMal {
-    background-color: red !important;
+    background-color: orange !important;
 }
 
 #salvar-musicas {
