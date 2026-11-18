@@ -485,6 +485,20 @@ if(modalPerfil){
 document.addEventListener('keydown', function(event){
     if(event.key === 'Escape'){
         fecharGerenciarPerfis();
+        document.querySelector('#modal-sobre').classList.add('escondido');
+    }
+});
+
+let modalSobre = document.querySelector('#modal-sobre');
+document.querySelector('#btn-sobre').addEventListener('click', function(){
+    modalSobre.classList.remove('escondido');
+});
+document.querySelector('#btn-fechar-sobre').addEventListener('click', function(){
+    modalSobre.classList.add('escondido');
+});
+modalSobre.addEventListener('click', function(event){
+    if(event.target === modalSobre){
+        modalSobre.classList.add('escondido');
     }
 });
 

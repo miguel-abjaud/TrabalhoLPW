@@ -14,7 +14,7 @@
         <div class="user-controls">
             <span id="perfil-atual-nome">Usuário: </span>
             <button id="btn-trocar-perfil" class="btn-secondary">Trocar Perfil</button>
-            <a id="btn-sobre" class="btn-secondary" href="creditos.html">Sobre</a>
+            <button id="btn-sobre" class="btn-secondary" type="button">Sobre</button>
         </div>
     </header>
 
@@ -113,7 +113,21 @@
 
     </div>
     
-  
+    <div id="modal-sobre" class="modal escondido" role="dialog" aria-modal="true" aria-labelledby="titulo-sobre">
+        <div class="modal-conteudo">
+            <button id="btn-fechar-sobre" class="modal-fechar" type="button" aria-label="Fechar">X</button>
+            <h2 id="titulo-sobre">Sobre o SoundBox</h2>
+            <p>Aplicação para organizar bibliotecas pessoais de músicas, com categorias, perfis e sugestões para ouvir.</p>
+            <h3>Autores</h3>
+            <ul class="lista-creditos">
+                <li><strong>Julia Oliveira</strong></li>
+                <li><strong>Lyon</strong></li>
+                <li><strong>Miguel</strong></li>
+                <li><strong>Lucas</strong></li>
+            </ul>
+        </div>
+    </div>
+
     <div id="modal-perfil" class="modal escondido">
         <div class="modal-conteudo">
             <h2>Gerenciar Perfis</h2>
