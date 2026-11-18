@@ -400,6 +400,36 @@ select:focus {
     cursor: default;
 }
 
+#lista-categorias,
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.categoria-item,
+.btn-filtro {
+    padding: 0.4rem 0.75rem;
+    color: #ffffff;
+    border: 1px solid var(--cor-categoria, #00f0ff);
+    border-radius: 999px;
+}
+
+.categoria-item {
+    background-color: color-mix(in srgb, var(--cor-categoria) 25%, #050811);
+}
+
+.btn-filtro {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.btn-filtro.ativo,
+.btn-filtro:hover {
+    background-color: color-mix(in srgb, var(--cor-categoria, #00f0ff) 30%, #050811);
+}
+
 .modal-conteudo {
     position: relative;
     width: 90%;

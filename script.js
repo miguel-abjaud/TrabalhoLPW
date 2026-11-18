@@ -405,31 +405,30 @@ function criarBotoesFiltro(){
     let filtrosEl = document.querySelector('#filtros');
     filtrosEl.innerHTML = '';
 
-    let categorias = ['Todas'];
-    for(let i = 0; i < musicas.length; i++){
-        if(!categorias.includes(musicas[i].categoria)){
-            categorias.push(musicas[i].categoria);
-        }
-    }
+    let nomesCategorias = ['Todas'].concat(categorias.map(function(categoria){
+        return categoria.nome;
+    }));
 
-    for(let i = 0; i < categorias.length; i++){
+    for(let i = 0; i < nomesCategorias.length; i++){
         let botaoEl = document.createElement('button');
         botaoEl.type = 'button';
         botaoEl.className = 'btn-filtro';
-        botaoEl.textContent = categorias[i];
-        botaoEl.dataset.categoria = categorias[i];
+        botaoEl.textContent = nomesCategorias[i];
+        botaoEl.dataset.categoria = nomesCategorias[i];
 
-        if(categorias[i] !== 'Todas') {
-            let cor = categoriasCores[categorias[i]] || '#00f0ff';
-            botaoEl.style.setProperty('--cor-categoria', cor);
+        let categoria = categorias.find(function(item){
+            return item.nome === nomesCategorias[i];
+        });
+        if(categoria){
+            botaoEl.style.setProperty('--cor-categoria', categoriasCores[categoria.nome] || categoria.cor);
         }
 
-        if(categorias[i] === categoriaAtual){
+        if(nomesCategorias[i] === categoriaAtual){
             botaoEl.classList.add('ativo');
         }
 
         botaoEl.addEventListener('click', function(){
-            filtrarMusicas(categorias[i]);
+            filtrarMusicas(nomesCategorias[i]);
         });
 
         filtrosEl.appendChild(botaoEl);
