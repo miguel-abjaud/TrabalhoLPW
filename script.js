@@ -198,24 +198,33 @@ function carregarLista(musicasArray){
 
     for(let i = 0; i < musicasArray.length; i++){
         let liEl = document.createElement('li');
-        
         let corCat = categoriasCores[musicasArray[i].categoria] || '#00f0ff';
         liEl.style.borderLeftColor = corCat;
 
+        let tituloEl = document.createElement('strong');
+        tituloEl.textContent = musicasArray[i].titulo;
+        liEl.appendChild(tituloEl);
+        let botaoExcluir = document.createElement('button');
+        botaoExcluir.type = 'button';
+        botaoExcluir.className = 'btn-apagar-musica';
+        botaoExcluir.textContent = 'X';
+        botaoExcluir.setAttribute('aria-label', 'Apagar ' + musicasArray[i].titulo);
+        botaoExcluir.addEventListener('click', function(){
+            excluirMusica(musicasArray[i]);
+        });
+        liEl.appendChild(botaoExcluir);
+        liEl.appendChild(document.createElement('br'));
+        liEl.appendChild(document.createTextNode('Artista: ' + musicasArray[i].artista));
+        liEl.appendChild(document.createElement('br'));
+        liEl.appendChild(document.createTextNode('Categoria: '));
+        let categoriaEl = document.createElement('span');
+        categoriaEl.style.color = corCat;
+        categoriaEl.style.fontWeight = 'bold';
+        categoriaEl.textContent = musicasArray[i].categoria;
+        liEl.appendChild(categoriaEl);
+        liEl.appendChild(document.createElement('br'));
+        liEl.appendChild(document.createTextNode('Status: ' + musicasArray[i].status));
         listaEl.appendChild(liEl);
-
-        liEl.innerHTML = '<strong>' + musicasArray[i].titulo + '</strong>' +
-        '<button type="button" class="btn-apagar-musica">X</button><br>' +
-        'Artista: ' + musicasArray[i].artista + '<br>' +
-        'Categoria: <span style="color:' + corCat + '; font-weight:bold;">' + musicasArray[i].categoria + '</span><br>' +
-        'Status: ' + musicasArray[i].status;
-
-        let botaoExcluir = liEl.querySelector('.btn-apagar-musica');
-        if(botaoExcluir){
-            botaoExcluir.addEventListener('click', function(){
-                excluirMusica(musicasArray[i]);
-            });
-        }
     }
 }
 
@@ -333,7 +342,15 @@ function sortearMusica() {
     let indiceAleatorio = Math.floor(Math.random() * musicas.length);
     let musicaSorteada = musicas[indiceAleatorio];
 
-    resultadoDiv.innerHTML = `🎉 Sugestão para ouvir agora:<br><strong>${musicaSorteada.titulo}</strong> - ${musicaSorteada.artista} <em>(${musicaSorteada.categoria})</em>`;
+    resultadoDiv.textContent = '';
+    resultadoDiv.appendChild(document.createTextNode('🎉 Sugestão para ouvir agora: '));
+    let tituloEl = document.createElement('strong');
+    tituloEl.textContent = musicaSorteada.titulo;
+    resultadoDiv.appendChild(tituloEl);
+    resultadoDiv.appendChild(document.createTextNode(' - ' + musicaSorteada.artista + ' '));
+    let categoriaEl = document.createElement('em');
+    categoriaEl.textContent = '(' + musicaSorteada.categoria + ')';
+    resultadoDiv.appendChild(categoriaEl);
 }
 
 function gerenciarPerfis() {
